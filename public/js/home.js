@@ -27,7 +27,7 @@ socket.on('welcome', function(data) {
         collapseIt(i);
       }
     }
-    let newID = data2.IDs +1;
+    let newID = data2.IDs;
     messageid = newID;
     /*
     $.ajax({
