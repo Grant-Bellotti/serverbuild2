@@ -169,7 +169,7 @@ router.post('/storeMessage', function(req, res){
   }
 
   let obj = new MessageData(message,id,user,type,color,comments,realMessage); //the -1 is temporary, is the yee rating
-  messageID++;
+  messageID = id + 1;
 return(messageDb.postData(obj,res));
 
 });

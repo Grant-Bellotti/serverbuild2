@@ -25,7 +25,7 @@ socket.on('welcome', function(data) {
       if(data2.IDs > 1){
       storedMessages = data2.test;
       $("#messages").append(storedMessages);
-      for(let i=2; i<=data2.IDs+1;i++) {
+      for(let i=2; i<=data2.IDs;i++) {
         collapseIt(i);
       }
     }
@@ -50,6 +50,7 @@ socket.on('welcome', function(data) {
 //Get message from server.
 socket.on('update', (data) => {
   let para = document.createElement("div");
+  messageid++;
 
 if(data.type == "Text") {
   $("#messages").append(
