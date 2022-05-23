@@ -2,6 +2,7 @@ let ident;
 
 let messageid;
 let socket = io();
+/*
 $.ajax({
   url: "/getmessageid",
   type: "GET",
@@ -11,6 +12,7 @@ $.ajax({
   } ,
   dataType: "json"
 });
+*/
 
 //Get message from server.
 socket.on('welcome', function(data) {
@@ -23,11 +25,11 @@ socket.on('welcome', function(data) {
       if(data2.IDs > 1){
       storedMessages = data2.test;
       $("#messages").append(storedMessages);
-      for(let i =2; i<=data2.IDs;i++) {
+      for(let i=2; i<=data2.IDs;i++) {
         collapseIt(i);
       }
     }
-    let newID = data2.IDs;
+    let newID = data2.IDs +1;
     messageid = newID;
     /*
     $.ajax({

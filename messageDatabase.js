@@ -146,7 +146,7 @@ myDatabase.prototype.getAllData = function(res) {
             +"</div>"
         );
       }
-      newmessageId = info[i].id+1;
+      newmessageId = info[i].id;
 
     }
 
