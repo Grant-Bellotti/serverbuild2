@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+  <body>
+    <ul id="NAVul">
+      <li id='NAVli'><a  href="/">Home</a></li>
+      <li id='NAVli'><a href="/profile">Profile</a></li>
+      <li id='NAVli'><a class="active" href="/survey">Survey</a></li>
+      <div class="Login">
+        <h1 id="session"><a href="/profile">Login</a> </h1>
+      </div>
+    </ul> <br>
+    
+    <form>
+      <fieldset>
+        <legend>Survey Questions</legend>
+        <ul id='messages'></ul>
+
+      </fieldset>
+      <br>
+      <input class="button" id="submitButton" type="button" onclick="submitClicked()" value="Submit Survey" />
+      <input class="button" type="reset" name="reset" value="Clear Survey">
+
+    </form>
+    <script src="js/randomizeSurvey.js"></script>
+    <script src="js/survey.js"></script>
+
+  </body>
+</html>

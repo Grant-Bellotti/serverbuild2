@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/style.css">
+
+<html>
+  <head>
+    <title>MR Yee Fan Club</title>
+    <meta charset="utf-8"/>
+    <style>
+
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+  </head>
+  <body>
+    <ul id="NAVul">
+    <li id='NAVli'><a class="active" href="/">Home</a></li>
+    <li id='NAVli'><a href="/profile">Profile</a></li>
+    <li id='NAVli'><a href="/survey">Survey</a></li>
+    <div class="Login">
+      <h1 id="session"><a href="/profile">Login</a> </h1>
+    </div>
+    </ul>
+
+    <h1>Mr Yee Fan Club</h1>
+    <h3>WE LOVE YOU MR YEE!</h3>
+
+
+
+        <form>
+      <fieldset id="homeForm">
+        <legend>Home Page</legend>
+          <div>
+            <label>Post Type:</label>
+            <input type="radio" id="Text" name="type" value="Text" onclick="changeView()" checked>
+            <label for="type">Text</label>
+            <input type="radio" id="Image" name="type" value="Image" onclick="changeView()">
+            <label for="type">Image</label>
+            <input type="radio" id="Video" name="type" value="Video" onclick="changeView()">
+            <label for="type">Video</label>
+            <br><br>
+
+          <fieldset>
+              <legend>Post all your Mr Yee related love!</legend>
+
+                <label id="postT2" for="postT">Title:</label>
+                <input id="postT" type="text" maxlength=""><br><br>
+
+                <label id="postC2" for="postC">Message:</label>
+                <input id="postC" type="text" class="postC" maxlength=""> <br>
+                <!-- <p id="postC" type="text" class="postC" contenteditable="true"></p> -->
+
+                <form id="fileupload">
+                  <label id="uploader2" for="uploader">Upload Image:</label>
+                  <input id="uploader" type="file"  multiple accept="image/*" name="image"> <br>
+
+                  <label id="uploader4" for="uploader3">Upload Video:</label>
+                  <input id="uploader3" type="file"  multiple accept="video/*" name="video"> <br><br>
+
+                  <input  class="button" id="postb" type="submit" name="postb" value="Post Message">
+                </form>
+          </fieldset>
+
+      </fieldset>
+    </form>
+    <br>
+    <div>
+      <ul id='messages'></ul>
+    </div>
+    <script src='/socket.io/socket.io.js'></script>
+
+    <script src="js/home.js"></script>
+
+  </body>
+</html>

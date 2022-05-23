@@ -1,0 +1,154 @@
+html{
+  font-family: Helvetica,Arial, sans-serif;
+}
+#homeForm{
+  border-style: hidden;
+}
+.button{
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.postBlock{
+  display:inline-block;
+}
+.imageUser{
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.button:hover:not(.active) {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-style: solid;
+  border-color: #000000;
+}
+
+.collapsible {
+  display: block;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.collapsible:hover{
+color: #000000;
+border-style: solid;
+border-color: #000000;
+}
+
+fieldset{
+  border-style: solid;
+  padding: 20px;
+  border-color: black;
+
+}
+legend {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 5px 10px;
+}
+ul{
+  list-style-type: none;
+}
+.postli{
+display: inline-block;
+word-wrap: break-word;
+overflow: auto;
+text-align: center;
+font-size: larger;
+font-weight: bold ;
+color: #ffffff;
+background-color: #000000;
+padding: 10px;
+height: 150px;
+width: 150px;
+}
+
+.postli:hover{
+  border-style: solid;
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #000000;
+}
+
+
+.postliContent{
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: auto;
+  text-align: center;
+  font-size: larger;
+  font-weight: bold ;
+  color: #ffffff;
+  padding: 10px;
+  height: 150px;
+  width: 150px;
+  }
+
+
+.postC{
+  height:max-content;
+  width: 75%;
+  border-style: solid;
+  border-color: black;
+}
+.Login{
+  text-align: right;
+  color:white;
+  font-size:9px;
+  margin-right:1%;
+}
+#NAVul {
+  font-weight: bold;
+  font-family: Helvetica,Arial, sans-serif;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #000000;
+}
+
+#NAVli {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+li a.active {
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+}
