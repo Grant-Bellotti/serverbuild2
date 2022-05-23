@@ -155,7 +155,7 @@ router.post('/videoupload', function(req, res) {
 
 router.post('/storeMessage', function(req, res){
   let message = req.body.message.trim();
-  let id = req.body.id.trim();
+  let id = parseInt(req.body.id.trim());
   let user = req.body.user.trim();
   let type = req.body.type.trim();
   let color = req.body.color.trim();

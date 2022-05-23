@@ -50,7 +50,6 @@ socket.on('welcome', function(data) {
 //Get message from server.
 socket.on('update', (data) => {
   let para = document.createElement("div");
-  messageid++;
 
 if(data.type == "Text") {
   $("#messages").append(
@@ -118,6 +117,7 @@ $.ajax({
      } ,
      dataType: "json"
    });
+   messageid++;
 });
 
 socket.on('updateComments',(data) => {
