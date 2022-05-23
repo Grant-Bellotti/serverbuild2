@@ -29,6 +29,7 @@ socket.on('welcome', function(data) {
     }
     let newID = data2.IDs +1;
     messageid = newID;
+    /*
     $.ajax({
       url: "/setmessageid",
       type: "POST",
@@ -38,6 +39,7 @@ socket.on('welcome', function(data) {
       } ,
       dataType: "json"
     });
+    */
   } ,
   dataType: "json"
   });
