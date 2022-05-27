@@ -170,25 +170,39 @@ router.post('/storeMessage', function(req, res){
 
   let obj = new MessageData(message,id,user,type,color,comments,realMessage); //the -1 is temporary, is the yee rating
   messageID = id + 1;
-return(messageDb.postData(obj,res));
+  return(messageDb.postData(obj,res));
 
 });
+
 router.post('/storeComment', function(req, res){
   let message = req.body.text.trim();
-  let id = req.body.messageID.trim();
+  let id = parseInt(req.body.messageID.trim());
   let user = req.body.user.trim();
   let oldComment = req.body.oldComment;
+  let color = req.body.color;
  //let survey= req.body.survey.trim();
-
   if (message == "") {
       res.json({error:true,message:"Bad Message"});
       return;
   }
 
-  let comment = oldComment + " <br> " + user + ": " + message + " <br> ";
+let testComment =
+`
+${oldComment}
+<div>
+  <p class="commentBlock" style="background-color:${color}">
+  ${user}:
+  ${message}
+  </p>
+  <div>`
+
+
+
+
+  //+ " <br> " + user + ": " + message + " <br> ";
   //messageID++;
-  console.log(oldComment);
-   return(messageDb.postComment(id,comment,res));
+ // console.log(oldComment);
+   return(messageDb.postComment(id,testComment,res));
 
 });
 

@@ -3,7 +3,8 @@ var mongoose = require("mongoose");
 var Data = mongoose.model("infos",{
   name: String,
   picture: String,
-  yeescore: Number
+  yeescore: Number,
+  yeetitle: String,
 
 });
 

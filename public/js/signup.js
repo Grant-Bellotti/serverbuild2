@@ -28,7 +28,7 @@ function createClicked(){
   $.ajax({
     url: "/createUserInfo",
     type: "POST",
-    data: {picture:"empty.webp",yeescore:-1},
+    data: {picture:"empty.webp",yeescore:-1,yeetitle:"A"},
     success: function(data){
 
     } ,

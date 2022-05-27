@@ -20,7 +20,8 @@ function uploadSuccess(data) {
       $.ajax({
         url: "/update",
         type: "PUT",
-        data: {picture:tempPic},
+        data: {picture:tempPic,yeescore:info.yeescore,yeetitle:info.yeetitle},
+
         success: function(data2){
           if (data2.error)
             alert(data2.message);
@@ -42,10 +43,30 @@ $(document).ready(function(){
     if(data.yeescore > -1) {
       $("#yeescore").html("Yee Survey Score: " + data.yeescore);
     }
-
+    if(data.yeetitle != "A") {
+      $("#yeetitle").html("Yee Title: " + data.yeetitle);
+      }
   });
 
+/////////////////////////////////////////////////////////
+
   $("form").submit(function(event) {
+    if($("#newPassword").val().trim()) {
+      $.ajax({
+        url: "/changePassword",
+        type: "PUT",
+        data: {newPassword:$("#newPassword").val()},
+        success: function(data){
+          if(data.error) {
+            alert(data.message);
+          } else {
+            $("#newPassword").val("");
+          }
+        } ,
+      dataType: "json"
+      });
+    }
+
     let data = new FormData($(this)[0]);
     $.ajax({
       url: '/fileupload',
