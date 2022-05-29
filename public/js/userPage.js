@@ -95,6 +95,14 @@ socket.on('updateComments', function(data) {
   }
 });
 
+$("#commentBox").keydown( function( event ) {
+    if ( event.which === 13 ) {
+      commentit();
+      event.preventDefault();
+      return false;
+    }
+});
+
 function commentit(id){
   let text = $("#commentBox").val();
   if(text != "") {
@@ -139,11 +147,4 @@ $(document).ready(function(){
 
   });
 
-  $("#commentBox").keydown( function( event ) {
-      if ( event.which === 13 ) {
-        commentit();
-        event.preventDefault();
-        return false;
-      }
-  });
 });
