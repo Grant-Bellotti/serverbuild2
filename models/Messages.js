@@ -8,6 +8,8 @@ var message = mongoose.model("Message",{
     color: String,
     comments:String,
     realMessage: String,
+    propic: String,
+    yeetitle: String,
 });
 
  

@@ -22,7 +22,7 @@ userSchema.pre("save", function(done) {
   bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
     if (err) { return done(err); }
     bcrypt.hash(user.password, salt, noop, function(err, hashedPassword) {
-      console.log("bcrypt.hash function callback  " + hashedPassword)
+console.log("bcrypt.hash function callback  " + hashedPassword)
       if (err) { return done(err); }
       user.password = hashedPassword;
       user.valueJY = Math.floor(Math.random()*1000);
@@ -51,7 +51,6 @@ userSchema.methods.changePassword = function(newPassword,name,User,res) {
     });
   });
 };
-
 
 userSchema.methods.name = function() {
   return this.displayName || this.username;

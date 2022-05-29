@@ -2,17 +2,6 @@ let ident;
 
 let messageid;
 let socket = io();
-/*
-$.ajax({
-  url: "/getmessageid",
-  type: "GET",
-  data: {'id':0},
-  success: function(data){
-    messageid = data;
-  } ,
-  dataType: "json"
-});
-*/
 
 //Get message from server.
 socket.on('welcome', function(data) {
@@ -31,17 +20,6 @@ socket.on('welcome', function(data) {
     }
     let newID = data2.IDs +1;
     messageid = newID;
-    /*
-    $.ajax({
-      url: "/setmessageid",
-      type: "POST",
-      data: {'ID':newID},
-      success: function(data){
-        console.log(data);
-      } ,
-      dataType: "json"
-    });
-    */
 
   } ,
   dataType: "json"
@@ -51,60 +29,32 @@ socket.on('welcome', function(data) {
 //Get message from server.
 socket.on('update', (data) => {
   let para = document.createElement("div");
-
 if(data.type == "Text") {
   $("#messages").append(
-    '<div class="postBlock">' +
-    '<p class="postli" style="background-color:'+ data.color +';">' + data.msg + ": " + data.user + '<br>'+'<body>'+data.bodyMSG+'</body>'+'</p>'+
-    '<div>'+
-    "<button type=button id ="+ messageid+ " class='collapsible' " + 'style="background-color:'+ data.color + ';">' + 'Comments</button>'+
-
-        "<div id =" + "d"+ messageid + " class="+ "content"+"> "
-        +"<input id =" + "t" + messageid + " class='cComment' type="+ "text"+">"
-        +"<input id =" + "c"+ messageid + " class='cbutton' type=button " +
-        "value=Comment onclick= " + "commentit("+  messageid + ")>"
-        +"<ul id=" + "p"+ messageid + "></ul>"
-      +"</div>"
-      +"</div>"
+    `<div class="postBlock" id=${data.id}>` +
+    '<p class="postli" style="background-color:'+ data.color +';">' + data.user + ": " + data.msg + '<br>'+'<body>'+data.bodyMSG+'</body>'
+    +'</p>'
       +"</div>"
   );
 }
 else if(data.type == "Image") {
   $("#messages").append(
-    "<div class='postBlock'>" +
-    "<p class='imageUser'>" + data.bodyMSG+ ": " + data.user + "</p>" +
-    "<img id='display' class='postli'" + 'style="background-color:'+ data.color +';" src="images/' + data.msg +'"height="150" width="150">' +
-    "<div>" +
-    "<button type=button id ="+ messageid+ " class='collapsible' " + 'style="background-color:'+ data.color + ';">' + 'Comments</button>'+
-
-        "<div id =" + "d"+ messageid + " class="+ "content"+"> "
-        +"<input id =" + "t" + messageid + " class='cComment' type="+ "text"+">"
-        +"<input id =" + "c"+ messageid + " class='cbutton' type=button " +
-        "value=Comment onclick= " + "commentit("+  messageid + ")>"
-        +"<ul id=" + "p"+ messageid + "></ul>"
-      +"</div>"
-      +"</div>"
-      +"</div>"
+    `<div class="postBlock" id=${data.id}>` +
+    `<p class='postli' style="background-color:${data.color};">`+ data.user + ": " +  data.bodyMSG +
+    "<img id='display' class='postli'" + 'style="background-color:'+ data.color +';" src="images/' + data.msg +'"height="100" width="100">' +"</p>"
+     +"</div>"
   );
 }
 else if(data.type == "Video") {
   $("#messages").append(
-    "<div class='postBlock'>" +
-    "<p class='imageUser'>" + data.bodyMSG+ ": " + data.user + "</p>" +
-    "<video id='video' class='postli'" + "style='background-color:"+ data.color +";'" + "width='230' height='150' controls>" +
-      "<source src='videos/" + data.msg + "'type='video/mp4'>" +
-    "</video>" +
-    "<div>" +
-    "<button type=button id ="+ messageid+ " class='collapsible' " + 'style="background-color:'+ data.color + ';">' + 'Comments</button>'+
 
-        "<div id =" + "d"+ messageid + " class="+ "content"+"> "
-        +"<input id =" + "t" + messageid + " class='cComment' type="+ "text"+">"
-        +"<input id =" + "c"+ messageid + " class='cbutton' type=button " +
-        "value=Comment onclick= " + "commentit("+  messageid + ")>"
-        +"<ul id=" + "p"+ messageid + "></ul>"
-      +"</div>"
-      +"</div>"
-      +"</div>"
+    `<div class="postBlock" id=${data.id}>` +
+    `<p class='postli' style="background-color:${data.color};">`+ data.user + ": " +  data.bodyMSG +
+    "<video id='video'" + "style='background-color:"+ data.color +";'" + "width='150' height='90' controls>" +
+    "<source src='videos/" + data.msg + "'type='video/mp4'>" +
+    "</video>" +"</p>"
+     +"</div>"
+
   );
 }
 
@@ -217,16 +167,26 @@ function uploadSuccess(data) {
         }
       }
 
-      $.ajax({
-        url: "/storeMessage",
-        type: "POST",
-        data: {message:msg,id:messageid,user:user,type:type,color:color,comments:"",realMessage:bodyMSG},
-        success: function(data){
 
-        } ,
-        dataType: "json"
-      });
-      socket.emit('update', {'type':type, 'msg': msg,'user':user,'color':color,'bodyMSG':bodyMSG});
+          $.ajax({
+          url: "/getInfo",
+          type: "GET",
+          data: {},
+          success: function(data2){
+            $.ajax({
+              url: "/storeMessage",
+              type: "POST",
+              data: {message:msg,id:messageid,user:user,type:type,color:color,comments:"",realMessage:bodyMSG,propic:data2.picture,yeetitle:data2.yeetitle},
+              success: function(data){
+
+              } ,
+              dataType: "json"
+                  });
+             socket.emit('update', {'id':messageid,'type':type, 'msg': msg,'user':user,'color':color,'bodyMSG':bodyMSG,'picture':data2.picture,'yeetitle':data2.yeetitle});
+          } ,
+          dataType: "json"
+          });
+
       $('#postT').val("");
       $('#postC').val("");
       $('#uploader').val("");
@@ -272,14 +232,18 @@ function commentit(id){
 function collapseIt(messageID){
   var coll = document.getElementById(messageID);
   coll.addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
+  $.ajax({
+      url: "/userPage",
+      type: "POST",
+      data: {PostID:messageID},
+      success: function(data){
+        window.location = '/userPage'
+      } ,
+      dataType: "json"
+    });
+
   });
+
 }
 
 function showPassword() {

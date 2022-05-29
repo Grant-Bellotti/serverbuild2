@@ -2,13 +2,12 @@ var express = require("express");
 var passport = require("passport");
 var path = require("path");
 
-var Promise = require('promise');
-
 var User = require("./models/user");
 var router = express.Router();
 
 const myDatabase = require('./myDatabase');    //added
 let db = new myDatabase();
+
 
 const Data = require('./Data');
 
@@ -84,6 +83,7 @@ router.put('/update', function(req, res){
   if (req.isAuthenticated()) {
     let name = req.user.username;
     let picture = req.body.picture.trim();
+
 
     let yeescore = parseInt(req.body.yeescore);
     let yeetitle = req.body.yeetitle;

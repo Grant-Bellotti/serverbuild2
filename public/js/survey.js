@@ -12,11 +12,26 @@ function submitClicked(){
         alert("you may need to select all the questions first");
       else {
         alert("your survey number is " + data.num);
+         $.ajax({
+        url: "/updateMessagesYT",
+        type: "PUT",
+        data: {yeetitle:data.title},
+
+        success: function(data2){
+          if (data2.error)
+            alert(data2.message);
+          else
+            console.log("goodUpdataeYeetitleMessage");
+        } ,
+      dataType: "json"
+        });
         location.href = "/profile";
       }
+      
     },
     dataType: "json"
   });
+ 
   return false;
 }
 

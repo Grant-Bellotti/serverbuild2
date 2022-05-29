@@ -17,7 +17,6 @@
     "mv": "^2.1.1",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
-    "promise": "^8.0.1",
     "socket.io": "^2.0.4"
   }
 }

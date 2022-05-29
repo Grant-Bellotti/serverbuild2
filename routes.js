@@ -71,14 +71,7 @@ router.get("/survey",function(req,res){
     res.sendFile(thePath);
   }
 });
-/*
-router.get("/yeeside",function(req,res){
-  res.sendFile(path.resolve(__dirname + "/public/views/yeelogin.html"));  //changed
-});
-router.get("/yeeview",function(req,res){
-  res.sendFile(path.resolve(__dirname + "/public/views/yeeview.html"));  //changed
-});
-*/
+
 router.get("/userInfo",function(req,res){
   if (req.isAuthenticated()) {
     console.log("req isAuthenticated");
@@ -120,6 +113,22 @@ let messageID = 1;
 let filename2;
 
 //////////////////////////////////
+let thisPost;
+router.get("/userPage",function(req,res){
+  res.sendFile(path.resolve(__dirname + "/public/views/userPage.html"));  //changed
+});
+
+router.post("/userPage",function(req,res){
+  thisPost = req.body.PostID;
+  res.json({});
+});
+
+router.get("/getPostID",function(req,res){
+  console.log(thisPost);
+  res.json({ID:thisPost});
+});
+
+
 router.post('/fileupload', function(req, res) {
     console.log("router.post fileupload");
     var form = new formidable.IncomingForm();
@@ -161,14 +170,16 @@ router.post('/storeMessage', function(req, res){
   let color = req.body.color.trim();
   let comments = req.body.comments;
   let realMessage = req.body.realMessage.trim();
+  let propic = req.body.propic.trim();
+ // let yeetitle = req.body.yeetitle.trim();
  //let survey= req.body.survey.trim();
 
   if (message == "") {
       res.json({error:true,message:"Bad Message"});
       return;
   }
-
-  let obj = new MessageData(message,id,user,type,color,comments,realMessage); //the -1 is temporary, is the yee rating
+  //let obj = new MessageData(message,id,user,type,color,comments,realMessage,propic,yeetitle); //the -1 is temporary, is the yee rating
+  let obj = new MessageData(message,id,user,type,color,comments,realMessage,propic); //the -1 is temporary, is the yee rating
   messageID = id + 1;
   return(messageDb.postData(obj,res));
 
@@ -189,23 +200,30 @@ router.post('/storeComment', function(req, res){
 let testComment =
 `
 ${oldComment}
-<div>
+  <div>
   <p class="commentBlock" style="background-color:${color}">
   ${user}:
   ${message}
   </p>
   <div>`
 
-
-
-
-  //+ " <br> " + user + ": " + message + " <br> ";
-  //messageID++;
- // console.log(oldComment);
-   return(messageDb.postComment(id,testComment,res));
+  return(messageDb.postComment(id,testComment,res));
 
 });
-
+router.put('/updateMessagesPropic', function(req, res){
+  if (req.isAuthenticated()) {
+    let user = req.user.username;
+    let profilepic = req.body.profilepic.trim();
+       return(messageDb.Updateprofile(user,profilepic,res));
+    }
+});
+router.put('/updateMessagesYT', function(req, res){
+  if (req.isAuthenticated()) {
+    let user = req.user.username;
+    let yeetitle = req.body.yeetitle.trim();
+       return(messageDb.Updateyeetitle(user,yeetitle,res));
+    }
+});
 router.get('/getmessageLength', function(req, res){
 return(messageDb.getmessageLength(res))
 });

@@ -39,23 +39,6 @@ myDatabase.prototype.getData = function(name,res) {
    });
 }
 
-myDatabase.prototype.getSurveyNumber = function(name) {
-
-  DataModel.find({name:name},function(error,info) {
-      if (error) {
-          return ({error:true});
-      }
-      else if (info == null) {
-          return ({error:true});
-      }
-
-      if (info.length == 1)
-          return ({error:false,yeescore:info[0].yeescore});
-      else
-          return ({error:true});
-   });
-}
-
 myDatabase.prototype.surveyNumber = function(name,num,res) {
   DataModel.find({name:name},function(error,info) {
       if (error) {
@@ -115,6 +98,23 @@ myDatabase.prototype.surveyNumber = function(name,num,res) {
       } else {
           return res.json({error:true,message:"the survey has already been taken on this account"});
       }
+   });
+}
+
+myDatabase.prototype.getSurveyNumber = function(name) {
+
+  DataModel.find({name:name},function(error,info) {
+      if (error) {
+          return ({error:true});
+      }
+      else if (info == null) {
+          return ({error:true});
+      }
+
+      if (info.length == 1)
+          return ({error:false,yeescore:info[0].yeescore});
+      else
+          return ({error:true});
    });
 }
 

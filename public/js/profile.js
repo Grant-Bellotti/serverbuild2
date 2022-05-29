@@ -10,6 +10,16 @@ function logoutClicked(){
   return false;
 }
 
+function showPassword() {
+  var input = document.getElementById("newPassword");
+  if (input.type === "password") {
+    input.type = "text";
+  }
+  else {
+    input.type = "password";
+  }
+}
+
 function uploadSuccess(data) {
   if (action == "Update") {
     $.get("/getInfo",function(info){
@@ -32,6 +42,19 @@ function uploadSuccess(data) {
         } ,
       dataType: "json"
       });
+      $.ajax({
+        url: "/updateMessagesPropic",
+        type: "PUT",
+        data: {user:info.name,profilepic:tempPic},
+
+        success: function(data2){
+          if (data2.error)
+            alert(data2.message);
+          else
+            console.log("goodUpdataeProfilePicMessage");
+        } ,
+      dataType: "json"
+      });
     });
   }
 }
@@ -46,9 +69,11 @@ $(document).ready(function(){
     if(data.yeetitle != "A") {
       $("#yeetitle").html("Yee Title: " + data.yeetitle);
       }
+
+
   });
 
-/////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 
   $("form").submit(function(event) {
     if($("#newPassword").val().trim()) {
