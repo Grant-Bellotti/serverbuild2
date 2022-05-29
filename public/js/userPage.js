@@ -138,4 +138,12 @@ $(document).ready(function(){
       $("#session").html("Welcome, " + data.name);
 
   });
+
+  $("#commentBox").keydown( function( event ) {
+      if ( event.which === 13 ) {
+        commentit();
+        event.preventDefault();
+        return false;
+      }
+  });
 });
