@@ -33,10 +33,12 @@ socket.on('welcome', function(data) {
             ${data2.realMessage}
             </p>
             </div>
-            <div class='commentStuff' style="background-color:${postColor}">Comments
-              <br> <input type="text" class="textC" id="commentBox" value="" >
+            <div  id="test" style="background-color:${postColor};  text-align: center;
+            font-size:36px;
+            font-weight: bold ;
+            color: white;">Comments
+              <br> <input type="text" class="textC" id="commentBox" maxlength="1000" value="" >
               <input class="button" type="button" id="addComment" value="Comment" onclick="commentit()">
-              </div><div>
             ${data2.comments}
             </div>
             `
@@ -47,10 +49,12 @@ socket.on('welcome', function(data) {
             <h1> ${data2.realMessage}`+ ":" + ` </h1>
             <img style="background-color:${postColor}" src="images/${data2.message}" width="60%">
             </div>
-            <div class='commentStuff' style="background-color:${postColor}">Comments
-              <br> <input type="text" class="textC" id="commentBox" value="" >
+            <div  id="test" style="background-color:${postColor};  text-align: center;
+            font-size:36px;
+            font-weight: bold ;
+            color: white;">Comments
+              <br> <input type="text" class="textC" id="commentBox" maxlength="1000" value="" >
               <input class="button" type="button" id="addComment" value="Comment" onclick="commentit()">
-              </div><div>
             ${data2.comments}
             </div>
             `
@@ -63,10 +67,12 @@ socket.on('welcome', function(data) {
             <source src="videos/${data2.message}">
             </video>
             </div>
-            <div class='commentStuff' style="background-color:${postColor}">Comments
-              <br> <input type="text" class="textC" id="commentBox" value="" >
+            <div  id="test" style="background-color:${postColor};  text-align: center;
+            font-size:36px;
+            font-weight: bold ;
+            color: white;">Comments
+              <br> <input type="text" class="textC" id="commentBox" maxlength="1000" value="" >
               <input class="button" type="button" id="addComment" value="Comment" onclick="commentit()">
-              </div><div>
             ${data2.comments}
             </div>
             `
@@ -89,19 +95,20 @@ socket.on('welcome', function(data) {
 
 socket.on('updateComments', function(data) {
   if(messageid==data.messageID){
-    $("#messages").append(
-      `<div>
-      <p class="commentBlock" style="background-color:${postColor}">
+    $("#test").append(
+
+      `
+      <div class="commentStuff commentBlock" style="background-color:${data.color}">
       ${data.user}:
       ${data.text}
-      </p>
-      <div>
-      `)
+      </div>
+      `
+      )
   }
 });
 
 function commentit(id){
-  let text = $("#commentBox").val();
+  let text = $("#commentBox").val()+"<br>";
   if(text != "") {
     $.get("/checkAuthenticated",function(info){
       if(info.error) {
@@ -109,6 +116,7 @@ function commentit(id){
         return false;
       } else {
         let user = info.user;
+        let postColor;
         $.ajax({
           url: "/getData",
           type: "GET",
@@ -125,11 +133,12 @@ function commentit(id){
               } ,
               dataType: "json"
             });
+            socket.emit("updateComments",{"text":text,"messageID":messageid,"user":user,"color":postColor})
+
           } ,
           dataType: "json"
         });
 
-       socket.emit("updateComments",{"text":text,"messageID":messageid,"user":user})
        $("#commentBox").val("");
       }
     });
