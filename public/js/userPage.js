@@ -71,9 +71,14 @@ socket.on('welcome', function(data) {
             </div>
             `
           }
-          $("#messages").append(
-            newComment
-            )
+          $("#messages").append(newComment);
+          $("#commentBox").keydown( function( event ) {
+            if ( event.which === 13 ) {
+              commentit();
+              event.preventDefault();
+              return false;
+            }
+          });
           } ,
         dataType: "json"
       });
@@ -93,14 +98,6 @@ socket.on('updateComments', function(data) {
       <div>
       `)
   }
-});
-
-$("#commentBox").keydown( function( event ) {
-    if ( event.which === 13 ) {
-      commentit();
-      event.preventDefault();
-      return false;
-    }
 });
 
 function commentit(id){

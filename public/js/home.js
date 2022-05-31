@@ -237,7 +237,8 @@ function collapseIt(messageID){
       type: "POST",
       data: {PostID:messageID},
       success: function(data){
-        window.location = '/userPage'
+        window.open("/userPage", "_blank");
+        //window.location = '/userPage'
       } ,
       dataType: "json"
     });

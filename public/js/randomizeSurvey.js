@@ -9,7 +9,7 @@ let questions = ["<label>What color is Mr Yee color blind to?</label> <br>",
                   "<label>What is Mr Yee's favorite animal?</label> <br>",
                   "<label>What name does Mr Yee most commonly use for his objects when coding?</label> <br>",
                   "<label>What is Mr Yee's favorite sport?</label> <br>",
-                  "<label>Which period is Mr Yee's free period?</label> <br>",
+                  "<label>What is Mr. Yee's favorite food (at the time this question was asked)?</label> <br>",
                   "<label>What is Mr Yee's punishment?</label> <br>"];
 
 let answers = [
@@ -38,10 +38,10 @@ let answers = [
                 "<input type=radio id=3 name=q5 value=0140300013>" + "<label for=q5>Game Programming</label>",
                 "<input type=radio id=4 name=q5 value=4131344021>" + "<label for=q5>Web Programming</label>"],
 
-               ["<input type=radio id=1 name=q6 value=4140304411>" + "<label for=q6>Dog</label>",
+               ["<input type=radio id=1 name=q6 value=4140304411>" + "<label for=q6>Koala</label>",
                 "<input type=radio id=2 name=q6 value=0430204011>" + "<label for=q6>Lion</label>",
                 "<input type=radio id=3 name=q6 value=0131300013>" + "<label for=q6>Elephant</label>",
-                "<input type=radio id=4 name=q6 value=0130344021>" + "<label for=q6>Koala</label>"],
+                "<input type=radio id=4 name=q6 value=0130344021>" + "<label for=q6>Dog</label>"],
 
                ["<input type=radio id=1 name=q7 value=0130300413>" + "<label for=q7>Ann</label>",
                 "<input type=radio id=2 name=q7 value=0131304021>" + "<label for=q7>Jojo</label>",
@@ -53,10 +53,10 @@ let answers = [
                 "<input type=radio id=3 name=q8 value=0130300411>" + "<label for=q8>Soccer</label>",
                 "<input type=radio id=4 name=q8 value=0131344021>" + "<label for=q8>Basketball</label>"],
 
-               ["<input type=radio id=1 name=q9 value=0140204011>" +"<label for=q9>Period 4</label>",
-                "<input type=radio id=2 name=q9 value=4430304013>" +"<label for=q9>Mr Yee has no free period</label>",
-                "<input type=radio id=3 name=q9 value=0130300411>" +"<label for=q9>All periods are free for Mr Yee because he has so much fun.</label>",
-                "<input type=radio id=4 name=q9 value=0131344021>" +"<label for=q9>Period 1</label>"],
+               ["<input type=radio id=1 name=q9 value=0140204011>" +"<label for=q9>Burger</label>",
+                "<input type=radio id=2 name=q9 value=4430304013>" +"<label for=q9>Miso Soup</label>",
+                "<input type=radio id=3 name=q9 value=0130300411>" +"<label for=q9>Spaghetti</label>",
+                "<input type=radio id=4 name=q9 value=0131344021>" +"<label for=q9>Steak</label>"],
 
                ["<input type=radio id=1 name=q10 value=0130300011>" + "<label for=q10>Taking you outside</label>",
                 "<input type=radio id=2 name=q10 value=0140204013>" + "<label for=q10>Mr Yee's clubs</label>",
