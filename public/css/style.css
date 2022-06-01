@@ -2,17 +2,36 @@ html{
   font-family: Helvetica,Arial, sans-serif;
 }
 
-#test{
-  max-width: 100vw;
+#heart{
+  max-width: 5.5rem;
+  max-height: 5..5rem;
+}
+
+#mydiv {
+  top: 40px;
+  left: 240px;
+  position: absolute;
+  z-index: 9;
+  text-align: center;
+}
+
+#mydivheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
 
 }
 
+
+
+#test{
+  max-width: 100vw;
+}
 
 #display{
   max-height: 100px;
   max-width: 100px;
 }
-
 
 #homeForm{
   border-style: hidden;
@@ -206,8 +225,6 @@ li a.active {
 
 }
 .commentStuff.commentBlock{
-  display: block;
-  margin: 0px;
   width: 100%;
   background-color: #000000;
   color: white;

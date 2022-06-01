@@ -203,7 +203,8 @@ ${oldComment}
   <div class="commentStuff commentBlock" style="background-color:${color}">
   ${user}:
   ${message}
-  </div>`
+  </div>
+  `
 
   return(messageDb.postComment(id,testComment,res));
 
