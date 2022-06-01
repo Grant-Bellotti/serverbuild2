@@ -108,6 +108,10 @@ socket.on('updateComments', function(data) {
 });
 
 function commentit(id){
+  if($("#commentBox").val() == "") {
+    alert("comment is required")
+    return false;
+  } else {
   let text = $("#commentBox").val()+"<br>";
   if(text != "") {
     $.get("/checkAuthenticated",function(info){
@@ -115,33 +119,34 @@ function commentit(id){
         alert(info.message);
         return false;
       } else {
-        let user = info.user;
-        let postColor;
-        $.ajax({
-          url: "/getData",
-          type: "GET",
-          data: {messageID:messageid},
-          success: function(data){
-            let oldComment = data.comments;
-            postColor = data.color
-            $.ajax({
-              url: "/storeComment",
-              type: "POST",
-              data: {text:text,messageID:messageid,user:user,oldComment:oldComment,color:data.color},
-              success: function(data2){
+          let user = info.user;
+          let postColor;
+          $.ajax({
+            url: "/getData",
+            type: "GET",
+            data: {messageID:messageid},
+            success: function(data){
+              let oldComment = data.comments;
+              postColor = data.color
+              $.ajax({
+                url: "/storeComment",
+                type: "POST",
+                data: {text:text,messageID:messageid,user:user,oldComment:oldComment,color:data.color},
+                success: function(data2){
 
-              } ,
-              dataType: "json"
-            });
-            socket.emit("updateComments",{"text":text,"messageID":messageid,"user":user,"color":postColor})
+                } ,
+                dataType: "json"
+              });
+              socket.emit("updateComments",{"text":text,"messageID":messageid,"user":user,"color":postColor})
 
-          } ,
-          dataType: "json"
-        });
+            } ,
+            dataType: "json"
+          });
 
-       $("#commentBox").val("");
-      }
-    });
+         $("#commentBox").val("");
+        }
+      });
+    }
   }
 }
 
